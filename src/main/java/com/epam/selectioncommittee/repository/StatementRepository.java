@@ -12,4 +12,8 @@ public interface StatementRepository {
     Statement getStatementByFacultyName(String facultyName);
 
     Statement finalizeStatement(Integer statementId, Statement statement);
+
+    void addApplicantToStatement(Long facultyId);
+
+    public void removeApplicantFromStatement(String userEmail);
 }

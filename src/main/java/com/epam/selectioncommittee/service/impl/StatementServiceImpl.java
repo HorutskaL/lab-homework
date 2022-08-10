@@ -17,12 +17,8 @@ import java.util.List;
 @Slf4j
 public class StatementServiceImpl implements StatementService {
 
-    private final StatementRepository statementRepository;
-    private final UserRepository userRepository;
-    public final FacultyRepository facultyRepository;
-
     @Override
-    public void addApplicantToStatement(String facultyName) {
+    public void addApplicantToStatement(Long facultyId) {
     }
 
     @Override
@@ -31,7 +27,7 @@ public class StatementServiceImpl implements StatementService {
     }
 
     @Override
-    public void finaliseStatement() {
+    public void finaliseStatement(Long statementId) {
 
     }
 

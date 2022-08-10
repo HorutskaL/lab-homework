@@ -2,6 +2,7 @@ package com.epam.selectioncommittee.repository.impl;
 
 import com.epam.selectioncommittee.model.Faculty;
 import com.epam.selectioncommittee.repository.FacultyRepository;
+import com.epam.selectioncommittee.service.exception.FacultyNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
@@ -33,7 +34,7 @@ public class FacultyRepositoryImpl implements FacultyRepository {
         return list.stream()
                 .filter(faculty -> faculty.getName().equals(name))
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException("Faculty is not found!"));
+                .orElseThrow(FacultyNotFoundException::new);
     }
 
     @Override
@@ -43,7 +44,7 @@ public class FacultyRepositoryImpl implements FacultyRepository {
         if (isDeleted) {
             list.add(faculty);
         } else {
-            throw new RuntimeException("Faculty is not found!");
+            throw new FacultyNotFoundException();
         }
         log.info("Faculty with name {} was updated", name);
         return faculty;

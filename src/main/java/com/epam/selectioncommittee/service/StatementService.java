@@ -6,11 +6,11 @@ import com.epam.selectioncommittee.dto.UserDto;
 import java.util.List;
 
 public interface StatementService {
-    void addApplicantToStatement(String facultyName);
+    void addApplicantToStatement(Long facultyId);
 
     void removeApplicantFromStatement(String userEmail);
 
-    void finaliseStatement();
+    void finaliseStatement(Long facultyId);
 
     List<UserDto> getBudgetPlApplicantList(String facultyName);
 

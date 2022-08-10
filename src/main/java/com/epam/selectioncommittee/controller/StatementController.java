@@ -26,15 +26,15 @@ public class StatementController {
     @ApiOperation("Add faculty to statement")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "/statement/{facultyId}")
-    public void add(@PathVariable String facultyId) {
+    public void add(@PathVariable Long facultyId) {
         statementService.addApplicantToStatement(facultyId);
     }
 
     @ApiOperation("Finalize statement")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(value = "/statement")
-    public void finalise() {
-        statementService.finaliseStatement();
+    public void finalise(Long facultyId) {
+        statementService.finaliseStatement(facultyId);
     }
 
     @ApiOperation("Delete user from statement")
