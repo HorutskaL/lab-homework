@@ -1,4 +1,4 @@
-package com.epam.selectioncommittee;
+package com.epam.selectioncommittee.api.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,7 +24,7 @@ public class SwaggerConfig {
                 .groupName("api")
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.epam.selectioncommittee.controller"))
-//                .paths(PathSelectors.ant("/api/v1/**"))
+                .paths(PathSelectors.ant("/api/v1/**"))
                 .build();
     }
 

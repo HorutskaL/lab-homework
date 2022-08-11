@@ -1,6 +1,7 @@
 package com.epam.selectioncommittee.dto;
 
 import com.epam.selectioncommittee.dto.group.OnCreate;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Data;
 
@@ -9,8 +10,9 @@ import javax.validation.constraints.*;
 @Data
 @Builder
 public class FacultyDto {
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long id;
-    @NotBlank(message = "'name' shouldn't be empty", groups = OnCreate.class)
+    @NotBlank(message = "validation.faculty.name", groups = OnCreate.class)
     private String name;
     @PositiveOrZero
     private int amountBudgetPlace;

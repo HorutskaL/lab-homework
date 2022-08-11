@@ -1,5 +1,6 @@
 package com.epam.selectioncommittee.controller;
 
+import com.epam.selectioncommittee.api.UserApi;
 import com.epam.selectioncommittee.dto.UserDto;
 import com.epam.selectioncommittee.dto.group.OnCreate;
 import com.epam.selectioncommittee.dto.group.OnUpdate;
@@ -17,53 +18,36 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1")
 @RequiredArgsConstructor
 @Slf4j
-@Api(tags = "API description for SWAGGER documentation")
-@ApiResponses({
-        @ApiResponse(code = 400, message = "Bad request"),
-        @ApiResponse(code = 404, message = "Not found"),
-        @ApiResponse(code = 500, message = "Internal Server Error")
-})
-public class UserController {
+
+public class UserController implements UserApi {
 
     private final UserService userService;
 
-    @ResponseStatus(HttpStatus.OK)
-    @GetMapping(value = "/user")
-    @ApiOperation("Get all users")
+    @Override
     public List<UserDto> getAllUsers() {
         log.info("getAllUsers");
         return userService.listUsers();
     }
 
-    @ResponseStatus(HttpStatus.OK)
-    @GetMapping(value = "user/{email}")
-    @ApiOperation("Get user by email")
-    public UserDto getUser(@PathVariable String email) {
+    @Override
+    public UserDto getUser(String email) {
         log.info("getUser by email {}", email);
         return userService.getUser(email);
     }
 
-    @PostMapping(value = "/user")
-    @ResponseStatus(HttpStatus.CREATED)
-    @ApiOperation("Create user")
-    public UserDto createUser(@RequestBody @Validated(OnCreate.class) UserDto userDto) {
+    @Override
+    public UserDto createUser(UserDto userDto) {
         return userService.createUser(userDto);
     }
 
-    @PatchMapping(value = "/user/{email}")
-    @ResponseStatus(HttpStatus.OK)
-    @ApiOperation("Update user")
-    public UserDto updateUser(@PathVariable("email") String email, @RequestBody @Validated(OnUpdate.class) UserDto userDto) {
+    @Override
+    public UserDto updateUser(String email, UserDto userDto) {
         return userService.updateUser(email, userDto);
     }
-
-    @ApiOperation("Delete user")
-    @DeleteMapping(value = "/user/{email}")
-    public void deleteUser(@PathVariable String email) {
-        userService.deleteUser(email);
+    @Override
+    public void deleteUser(String email) {userService.deleteUser(email);
     }
 
 }

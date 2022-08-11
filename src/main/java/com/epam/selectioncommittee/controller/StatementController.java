@@ -1,5 +1,6 @@
 package com.epam.selectioncommittee.controller;
 
+import com.epam.selectioncommittee.api.StatementApi;
 import com.epam.selectioncommittee.service.StatementService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -11,34 +12,22 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1")
 @AllArgsConstructor
 @Slf4j
-@Api(tags = "API description for SWAGGER documentation")
-@ApiResponses({
-        @ApiResponse(code = 400, message = "Bad request"),
-        @ApiResponse(code = 404, message = "Not found"),
-        @ApiResponse(code = 500, message = "Internal Server Error")
-})
-public class StatementController {
+public class StatementController implements StatementApi {
     public final StatementService statementService;
 
-    @ApiOperation("Add faculty to statement")
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping(value = "/statement/{facultyId}")
-    public void add(@PathVariable Long facultyId) {
+    @Override
+    public void add(Long facultyId) {
         statementService.addApplicantToStatement(facultyId);
     }
 
-    @ApiOperation("Finalize statement")
-    @ResponseStatus(HttpStatus.OK)
-    @GetMapping(value = "/statement")
+    @Override
     public void finalise(Long facultyId) {
         statementService.finaliseStatement(facultyId);
     }
 
-    @ApiOperation("Delete user from statement")
-    @DeleteMapping(value = "/statement/{userEmail}")
+    @Override
     public void deleteUserFromStatement(@PathVariable String userEmail) {
         statementService.removeApplicantFromStatement(userEmail);
     }
