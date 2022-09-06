@@ -23,5 +23,5 @@ public class Subject {
     private int eieMath;
     private int eieUkLanguage;
     private int eieHistory;
-    private User user;
+    private User userId;
 }

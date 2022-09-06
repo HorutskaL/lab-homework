@@ -12,39 +12,40 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
+@RequestMapping("/users")
 public class UserController {
 
     private final UserService userService;
 
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping(value = "/user")
     public List<UserDto> getAllUsers() {
         log.info("getAllUsers");
         return userService.listUsers();
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping(value = "user/{email}")
-    public UserDto getUser(@PathVariable String email) {
-        log.info("getUser by email {}", email);
-        return userService.getUser(email);
+    @GetMapping(value = "/{userId}")
+    public UserDto getUser(@PathVariable("userId") Long userId) {
+        log.info("getUser by id {}", userId);
+        return userService.getUser(userId);
     }
 
-    @PostMapping(value = "/user")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public UserDto createUser(@RequestBody UserDto userDto) {
         return userService.createUser(userDto);
     }
 
-    @PatchMapping(value = "/user/{email}")
+    @PatchMapping(value = "/{userId}")
     @ResponseStatus(HttpStatus.OK)
-    public UserDto updateUser(@PathVariable("email") String email, @RequestBody UserDto userDto) {
-        return userService.updateUser(email, userDto);
+    public UserDto updateUser(@PathVariable("userId") Long id, @RequestBody UserDto userDto) {
+        return userService.updateUser(id, userDto);
     }
 
-    @DeleteMapping(value = "/user/{email}")
-    public void deleteUser(@PathVariable String email) {
-        userService.deleteUser(email);
+    @DeleteMapping(value = "/{userId}")
+    public void deleteUser(@PathVariable("userId") Long id) {
+        userService.deleteUser(id);
     }
 
 }

@@ -12,32 +12,33 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @Slf4j
+@RequestMapping("/faculties")
 public class FacultyController {
     private final FacultyService facultyService;
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping(value = "/faculty")
+    @GetMapping
     public List<FacultyDto> getAllFaculties() {
         log.info("getAllFaculties");
         return facultyService.faculties();
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping(value = "/faculty")
+    @PostMapping
     public FacultyDto createFaculty(@RequestBody FacultyDto facultyDto) {
         log.info("create faculty");
         return facultyService.createFaculty(facultyDto);
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @PatchMapping(value = "/faculty/{name}")
-    public FacultyDto updateFaculty(@PathVariable("name") String name, @RequestBody FacultyDto facultyDto) {
-        log.info("update faculty with name {}", name);
-        return facultyService.updateFaculty(name, facultyDto);
+    @PatchMapping(value = "/{facultyId}")
+    public FacultyDto updateFaculty(@PathVariable("facultyId") Long facultyId, @RequestBody FacultyDto facultyDto) {
+        log.info("update faculty with id {}", facultyId);
+        return facultyService.updateFaculty(facultyId, facultyDto);
     }
 
-    @DeleteMapping(value = "/faculty/{name}")
-    public void deleteFaculty(@PathVariable String name) {
-        facultyService.deleteFaculty(name);
+    @DeleteMapping(value = "/{facultyId}")
+    public void deleteFaculty(@PathVariable("facultyId") Long facultyId) {
+        facultyService.deleteFaculty(facultyId);
     }
 }

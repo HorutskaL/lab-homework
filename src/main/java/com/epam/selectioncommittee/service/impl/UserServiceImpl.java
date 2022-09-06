@@ -20,9 +20,9 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     @Override
-    public UserDto getUser(String email) {
-        log.info("getUser by email {}", email);
-        User user = userRepository.getUser(email);
+    public UserDto getUser(Long id) {
+        log.info("getUser by id {}", id);
+        User user = userRepository.getUser(id);
         return UserMapper.INSTANCE.mapUserToUserDto(user);
     }
 
@@ -44,17 +44,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto updateUser(String email, UserDto userDto) {
-        log.info("updateUser with email {}", userDto.getEmail());
+    public UserDto updateUser(Long id, UserDto userDto) {
+        log.info("updateUser with id {}", userDto.getId());
         User user = UserMapper.INSTANCE.mapUserDtoToUser(userDto);
-        user = userRepository.updateUser(email, user);
+        user = userRepository.updateUser(id, user);
         return UserMapper.INSTANCE.mapUserToUserDto(user);
     }
 
     @Override
-    public void deleteUser(String email) {
-        log.info("deleteUser with email {}", email);
-        userRepository.deleteUser(email);
+    public void deleteUser(Long id) {
+        log.info("deleteUser with id {}", id);
+        userRepository.deleteUser(id);
     }
 
 }

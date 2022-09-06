@@ -13,5 +13,5 @@ public class UserInfoDto {
     private String city;
     private String region;
     private String school;
-    private UserDto user;
+    private UserDto userId;
 }

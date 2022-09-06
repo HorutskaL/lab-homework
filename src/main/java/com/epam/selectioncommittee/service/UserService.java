@@ -5,13 +5,13 @@ import com.epam.selectioncommittee.dto.UserDto;
 import java.util.List;
 
 public interface UserService {
-    UserDto getUser(String email);
+    UserDto getUser(Long id);
 
     List<UserDto> listUsers();
 
     UserDto createUser(UserDto userDto);
 
-    UserDto updateUser(String email, UserDto userDto);
+    UserDto updateUser(Long id, UserDto userDto);
 
-    void deleteUser(String email);
+    void deleteUser(Long id);
 }
