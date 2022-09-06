@@ -6,15 +6,15 @@ import com.epam.selectioncommittee.dto.UserDto;
 import java.util.List;
 
 public interface StatementService {
-    void addApplicantToStatement(Long facultyId);
+    void addApplicantToStatement(Long userId);
 
-    void removeApplicantFromStatement(String userEmail);
+    void removeApplicantFromStatement(Long userId);
 
     void finaliseStatement(Long facultyId);
 
-    List<UserDto> getBudgetPlApplicantList(String facultyName);
+    List<UserDto> getApplicantList(Long facultyId);
 
-    List<UserDto> getNotBudgetPlApplicantList(String facultyName);
+    List<UserDto> getBudgetPlApplicantList(Long facultyId);
 
-    StatementDto createStatement(StatementDto statementDto);
+    List<UserDto> getNonBudgetPlApplicantList(Long facultyId);
 }

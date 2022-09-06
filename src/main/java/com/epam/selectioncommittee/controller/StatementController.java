@@ -28,7 +28,7 @@ public class StatementController implements StatementApi {
     }
 
     @Override
-    public void deleteUserFromStatement(@PathVariable String userEmail) {
-        statementService.removeApplicantFromStatement(userEmail);
+    public void deleteUserFromStatement(@PathVariable Long userId) {
+        statementService.removeApplicantFromStatement(userId);
     }
 }

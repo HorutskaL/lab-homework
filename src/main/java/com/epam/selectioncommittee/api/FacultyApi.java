@@ -19,24 +19,24 @@ import java.util.List;
         @ApiResponse(code = 404, message = "Not found"),
         @ApiResponse(code = 500, message = "Internal Server Error")
 })
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/faculties")
 public interface FacultyApi {
     @ApiOperation("Get faculties")
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping(value = "/faculty")
+    @GetMapping
     List<FacultyDto> getAllFaculties();
 
     @ApiOperation("Create faculty")
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping(value = "/faculty")
+    @PostMapping
     FacultyDto createFaculty(@RequestBody @Validated(OnCreate.class) FacultyDto facultyDto);
 
     @ApiOperation("Update faculty")
     @ResponseStatus(HttpStatus.OK)
-    @PatchMapping(value = "/faculty/{name}")
-    FacultyDto updateFaculty(@PathVariable("name") String name, @RequestBody @Validated(OnUpdate.class) FacultyDto facultyDto);
+    @PatchMapping(value = "/{facultyId}")
+    FacultyDto updateFaculty(@PathVariable("facultyId") Long facultyId, @RequestBody @Validated(OnUpdate.class) FacultyDto facultyDto);
 
     @ApiOperation("Delete faculty")
-    @DeleteMapping(value = "/faculty/{name}")
-    void deleteFaculty(@PathVariable String name);
+    @DeleteMapping(value = "/{facultyId}")
+    void deleteFaculty(@PathVariable Long facultyId);
 }

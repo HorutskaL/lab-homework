@@ -13,21 +13,21 @@ import org.springframework.web.bind.annotation.*;
         @ApiResponse(code = 404, message = "Not found"),
         @ApiResponse(code = 500, message = "Internal Server Error")
 })
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/statements")
 public interface StatementApi {
 
     @ApiOperation("Add faculty to statement")
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping(value = "/statement/{facultyId}")
+    @PostMapping(value = "/{facultyId}")
     void add(@PathVariable Long facultyId);
 
     @ApiOperation("Finalize statement")
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping(value = "/statement")
+    @GetMapping
     void finalise(Long facultyId);
 
     @ApiOperation("Delete user from statement")
-    @DeleteMapping(value = "/statement/{userEmail}")
-    void deleteUserFromStatement(@PathVariable String userEmail);
+    @DeleteMapping(value = "/{userId}")
+    void deleteUserFromStatement(@PathVariable Long userId);
 
 }

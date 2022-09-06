@@ -28,9 +28,9 @@ public class FacultyServiceImpl implements FacultyService {
     }
 
     @Override
-    public FacultyDto getFaculty(String name) {
-        log.info("getFaculty by name{}", name);
-        Faculty faculty = facultyRepository.getFacultyByName(name);
+    public FacultyDto getFaculty(Long facultyId) {
+        log.info("getFaculty by id {}", facultyId);
+        Faculty faculty = facultyRepository.getFacultyById(facultyId);
         return FacultyMapper.INSTANCE.mapFacultyToFacultyDto(faculty);
     }
 
@@ -44,16 +44,16 @@ public class FacultyServiceImpl implements FacultyService {
     }
 
     @Override
-    public FacultyDto updateFaculty(String name, FacultyDto facultyDto) {
-        log.info("updateFaculty with name {}", facultyDto.getName());
+    public FacultyDto updateFaculty(Long facultyId, FacultyDto facultyDto) {
+        log.info("updateFaculty with id {}", facultyDto.getId());
         Faculty faculty = FacultyMapper.INSTANCE.mapFacultyDtoToFaculty(facultyDto);
-        faculty = facultyRepository.updateFaculty(name, faculty);
+        faculty = facultyRepository.updateFaculty(facultyId, faculty);
         return FacultyMapper.INSTANCE.mapFacultyToFacultyDto(faculty);
     }
 
     @Override
-    public void deleteFaculty(String name) {
-        log.info("deleteFaculty with name {}", name);
-        facultyRepository.deleteFaculty(name);
+    public void deleteFaculty(Long facultyId) {
+        log.info("deleteFaculty with id {}", facultyId);
+        facultyRepository.deleteFaculty(facultyId);
     }
 }

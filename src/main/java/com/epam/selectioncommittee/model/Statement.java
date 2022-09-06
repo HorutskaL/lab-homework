@@ -17,4 +17,8 @@ public class Statement {
     private boolean isFinalized;
     private Date creatingTime;
     private Faculty faculty;
+    private User user;
+    private int facultyId;
+    private int amountBudgetPl;
+    private int amountNonBudgetPl;
 }

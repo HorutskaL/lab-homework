@@ -29,30 +29,30 @@ public class FacultyRepositoryImpl implements FacultyRepository {
     }
 
     @Override
-    public Faculty getFacultyByName(String name) {
-        log.info("Get faculty with {}", name);
+    public Faculty getFacultyById(Long facultyId) {
+        log.info("Get faculty with id: {}", facultyId);
         return list.stream()
-                .filter(faculty -> faculty.getName().equals(name))
+                .filter(faculty -> faculty.getId().equals(facultyId))
                 .findFirst()
-                .orElseThrow(FacultyNotFoundException::new);
+                .orElseThrow(() -> new FacultyNotFoundException());
     }
 
     @Override
-    public Faculty updateFaculty(String name, Faculty faculty) {
+    public Faculty updateFaculty(Long facultyId, Faculty faculty) {
 
-        boolean isDeleted = list.removeIf(u -> u.getName().equals(name));
+        boolean isDeleted = list.removeIf(u -> u.getId().equals(facultyId));
         if (isDeleted) {
             list.add(faculty);
         } else {
             throw new FacultyNotFoundException();
         }
-        log.info("Faculty with name {} was updated", name);
+        log.info("Faculty with id {} was updated", facultyId);
         return faculty;
     }
 
     @Override
-    public void deleteFaculty(String name) {
-        list.removeIf(faculty -> faculty.getName().equals(name));
-        log.info("User with email {} was deleted", name);
+    public void deleteFaculty(Long facultyId) {
+        list.removeIf(faculty -> faculty.getId().equals(facultyId));
+        log.info("Faculty with id {} was deleted", facultyId);
     }
 }

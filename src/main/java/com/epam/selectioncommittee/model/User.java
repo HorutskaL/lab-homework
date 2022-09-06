@@ -3,14 +3,17 @@ package com.epam.selectioncommittee.model;
 import com.epam.selectioncommittee.model.enums.Role;
 import lombok.*;
 
+import java.util.Set;
+
 @Data
-@ToString(exclude = {"userInfo"})
+@ToString(exclude = {"userInfo","subjects"})
 @Builder
 public class User {
     private Long id;
     private String email;
     private String password;
-    private Role role;
+    private Role role = Role.ADMIN;
     private UserInfo userInfo;
     private Subject subjects;
+    Set<Faculty> faculties;
 }
