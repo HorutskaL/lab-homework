@@ -9,10 +9,10 @@ public interface FacultyRepository {
 
     List<Faculty> getAllFaculties();
 
-    Faculty getFacultyByName(String name);
+    Faculty getFacultyById(Long facultyId);
 
-    void deleteFaculty(String name);
+    void deleteFaculty(Long facultyId);
 
-    Faculty updateFaculty(String name, Faculty faculty);
+    Faculty updateFaculty(Long facultyId, Faculty faculty);
 
 }
