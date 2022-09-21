@@ -6,3 +6,14 @@ management:
   endpoint:
     health:
       show-details: always
+spring:
+  datasource:
+    username: postgres
+    password: postman
+    url: jdbc:postgresql://localhost:5432/selection_committee
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create

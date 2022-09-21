@@ -14,16 +14,16 @@ public class UserFacultyController implements UserFacultyApi {
     private final UserFacultyService userFacultyService;
 
     @Override
-    public ResponseEntity<Void> registerUserOnFaculty(String userEmail, int facultyId, int eieMath,
+    public ResponseEntity<Void> registerUserOnFaculty(Long userId, Long facultyId, int eieMath,
                                                       int eieUkLanguage, int eieHistory) {
-        log.info("Applicant userEmail {} registered on facultyId {}", userEmail, facultyId);
-        userFacultyService.registerUserOnFaculty(userEmail, facultyId, eieUkLanguage, eieMath, eieHistory);
+        log.info("Applicant userId {} registered on facultyId {}", userId, facultyId);
+        userFacultyService.registerUserOnFaculty(userId, facultyId, eieUkLanguage, eieMath, eieHistory);
         return ResponseEntity.noContent().build();
     }
 
     @Override
-    public ResponseEntity<Void> deleteUser(String userEmail, int facultyId) {
-        userFacultyService.deleteUser(userEmail, facultyId);
+    public ResponseEntity<Void> deleteUser(Long userId, Long facultyId) {
+        userFacultyService.deleteUser(userId, facultyId);
         return ResponseEntity.noContent().build();
     }
 }

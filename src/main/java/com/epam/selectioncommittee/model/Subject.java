@@ -1,15 +1,22 @@
 package com.epam.selectioncommittee.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
+import javax.persistence.*;
+
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString(exclude = {"user"})
 @Builder
+@Table(name = "Subject")
 public class Subject {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private int algebra;
     private int science;
     private int geometry;
@@ -23,5 +30,9 @@ public class Subject {
     private int eieMath;
     private int eieUkLanguage;
     private int eieHistory;
+
+    @OneToOne
+    @JoinColumn(name = "person_id", referencedColumnName = "id")
+    @JsonBackReference
     private User user;
 }

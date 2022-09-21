@@ -1,6 +1,7 @@
 package com.epam.selectioncommittee.controller;
 
 import com.epam.selectioncommittee.api.StatementApi;
+import com.epam.selectioncommittee.service.StatementMappingService;
 import com.epam.selectioncommittee.service.StatementService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -15,7 +16,8 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 @Slf4j
 public class StatementController implements StatementApi {
-    public final StatementService statementService;
+    private final StatementService statementService;
+    private final StatementMappingService statementMappingService;
 
     @Override
     public void add(Long facultyId) {
@@ -24,11 +26,11 @@ public class StatementController implements StatementApi {
 
     @Override
     public void finalise(Long facultyId) {
-        statementService.finaliseStatement(facultyId);
+        statementMappingService.finaliseStatement(facultyId);
     }
 
     @Override
-    public void deleteUserFromStatement(@PathVariable String userEmail) {
-        statementService.removeApplicantFromStatement(userEmail);
+    public void deleteUserFromStatement(@PathVariable Long userId) {
+        statementService.removeApplicantFromStatement(userId);
     }
 }

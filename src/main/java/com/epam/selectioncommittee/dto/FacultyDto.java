@@ -18,13 +18,13 @@ public class FacultyDto {
     private int amountBudgetPlace;
     @Positive
     private int amountTotalPlace;
-    @Min(1)
-    @Max(12)
+    @Min(0)
+    @Max(1)
     private int isEieMath;
-    @Min(1)
-    @Max(12)
+    @Min(0)
+    @Max(1)
     private int isEieUkLanguage;
-    @Min(1)
-    @Max(12)
+    @Min(0)
+    @Max(1)
     private int isEieHistory;
 }

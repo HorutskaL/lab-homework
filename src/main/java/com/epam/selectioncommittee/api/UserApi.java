@@ -19,30 +19,30 @@ import java.util.List;
         @ApiResponse(code = 404, message = "Not found"),
         @ApiResponse(code = 500, message = "Internal Server Error")
 })
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/users")
 public interface UserApi {
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping(value = "/user")
+    @GetMapping
     @ApiOperation("Get all users")
     List<UserDto> getAllUsers();
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping(value = "user/{email}")
-    @ApiOperation("Get user by email")
-    UserDto getUser(@PathVariable String email);
+    @GetMapping(value = "/{userId}")
+    @ApiOperation("Get user by id")
+    UserDto getUser(@PathVariable Long userId);
 
-    @PostMapping(value = "/user")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation("Create user")
     UserDto createUser(@RequestBody @Validated(OnCreate.class) UserDto userDto);
 
-    @PatchMapping(value = "/user/{email}")
+    @PatchMapping(value = "/{userId}")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation("Update user")
-    UserDto updateUser(@PathVariable("email") String email, @RequestBody @Validated(OnUpdate.class) UserDto userDto);
+    UserDto updateUser(@PathVariable("userId") Long userId, @RequestBody @Validated(OnUpdate.class) UserDto userDto);
 
     @ApiOperation("Delete user")
-    @DeleteMapping(value = "/user/{email}")
-    void deleteUser(@PathVariable String email);
+    @DeleteMapping(value = "/{userId}")
+    void deleteUser(@PathVariable Long userId);
 }

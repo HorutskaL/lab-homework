@@ -36,9 +36,10 @@ public class UserDto {
     @NotBlank(message = "{validation.user.role.notNull}", groups = OnCreate.class)
     @Null(message = "{validation.user.role.null}", groups = OnUpdate.class)
     private Role role;
+    private int isBlocked;
 
     private UserInfoDto userInfo;
 
-    private SubjectDto subjects;
+    private SubjectDto subject;
 
 }

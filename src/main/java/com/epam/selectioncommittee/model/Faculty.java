@@ -1,20 +1,23 @@
 package com.epam.selectioncommittee.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
-import java.util.ArrayList;
+import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 
+@Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
-@ToString(exclude = {"users"})
 @Builder
+@Table(name = "Faculty")
 public class Faculty {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
     private String name;
     private int amountBudgetPlaces;
@@ -22,6 +25,12 @@ public class Faculty {
     private int isEieMath;
     private int isEieUkLanguage;
     private int isEieHistory;
+
+    @ManyToMany(mappedBy = "faculties")
+    @JsonIgnore
     Set<User> users;
-    List<Statement> statements = new ArrayList<Statement>();
+
+    @OneToMany(mappedBy = "faculty")
+    @JsonIgnore
+    List<Statement> statements;
 }

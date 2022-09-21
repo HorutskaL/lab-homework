@@ -29,14 +29,14 @@ public class FacultyController implements FacultyApi {
     }
 
     @Override
-    public FacultyDto updateFaculty(String name, FacultyDto facultyDto) {
-        log.info("update faculty with name {}", name);
-        return facultyService.updateFaculty(name, facultyDto);
+    public FacultyDto updateFaculty(Long facultyId, FacultyDto facultyDto) {
+        log.info("update faculty with id {}", facultyId);
+        return facultyService.updateFaculty(facultyId, facultyDto);
     }
 
     @Override
-    public void deleteFaculty(String name) {
-        facultyService.deleteFaculty(name);
+    public void deleteFaculty(Long facultyId) {
+        facultyService.deleteFaculty(facultyId);
     }
 
 }

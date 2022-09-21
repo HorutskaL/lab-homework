@@ -1,18 +1,20 @@
 package com.epam.selectioncommittee.repository;
 
 import com.epam.selectioncommittee.model.Faculty;
+import lombok.NonNull;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import java.util.Optional;
 
-public interface FacultyRepository {
-    Faculty createFaculty(Faculty faculty);
+@Repository
+public interface FacultyRepository extends JpaRepository<Faculty, Long>, PagingAndSortingRepository<Faculty, Long> {
+    @NonNull
+    Optional<Faculty> findById(@NonNull Long id);
 
-    List<Faculty> getAllFaculties();
-
-    Faculty getFacultyByName(String name);
-
-    void deleteFaculty(String name);
-
-    Faculty updateFaculty(String name, Faculty faculty);
-
+    @NonNull
+    Page<Faculty> findAll(@NonNull Pageable pageable);
 }

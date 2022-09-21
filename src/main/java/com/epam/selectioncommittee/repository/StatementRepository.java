@@ -1,19 +1,27 @@
 package com.epam.selectioncommittee.repository;
 
+import com.epam.selectioncommittee.model.Faculty;
 import com.epam.selectioncommittee.model.Statement;
+import com.epam.selectioncommittee.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface StatementRepository {
-    Statement createStatement(Statement statement);
+@Repository
+public interface StatementRepository extends JpaRepository<Statement, Long> {
 
-    List<Statement> statements(Integer statementId);
+    Statement findByUser(User user);
 
-    Statement getStatementByFacultyName(String facultyName);
+    boolean existsStatementByUser(User user);
 
-    Statement finalizeStatement(Integer statementId, Statement statement);
+    List<Statement> findByFaculty(@Param("faculty") Faculty faculty);
 
-    void addApplicantToStatement(Long facultyId);
+    @Query("select s from Statement s where s.amountBudgetPl = 1 and s.faculty =?1")
+    List<Statement> findBudgetStPlByFaculty(Faculty faculty);
 
-    public void removeApplicantFromStatement(String userEmail);
+    @Query("select s from Statement s where s.amountNonBudgetPl = 1 and s.faculty =?1")
+    List<Statement> findNonBudStPlByFaculty(Faculty faculty);
 }
