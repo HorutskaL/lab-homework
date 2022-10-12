@@ -8,8 +8,6 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 @Entity(name = "Person")
-//@Data
-//@ToString(exclude = {"userInfo","subjects"})
 @Getter
 @Setter
 @Builder

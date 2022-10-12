@@ -14,17 +14,18 @@ import org.springframework.web.bind.annotation.*;
         @ApiResponse(code = 404, message = "Not found"),
         @ApiResponse(code = 500, message = "Internal Server Error")
 })
-@RequestMapping("/api/v1//userFaculty/userId/{userId}/facultyId/{facultyId}")
+@RequestMapping("/api/v1/userFaculty/userId/{userId}/facultyId/{facultyId}")
 public interface UserFacultyApi {
 
     @ApiOperation("Register applicant")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "/eieUkLanguage/{eieUkLanguage}/eieMath/{eieMath}/eieHistory/{eieHistory}")
-    ResponseEntity<Void> registerUserOnFaculty(@PathVariable("userId") Long userId, @PathVariable("facultyId") Long facultyId,
+    void registerUserOnFaculty(@PathVariable("userId") Long userId, @PathVariable("facultyId") Long facultyId,
                                                @PathVariable("eieMath") int eieMath, @PathVariable("eieUkLanguage") int eieUkLanguage,
                                                @PathVariable("eieHistory") int eieHistory);
 
     @ApiOperation("Delete user from faculty")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping
     ResponseEntity<Void> deleteUser(@PathVariable("userId") Long userId, @PathVariable("facultyId") Long facultyId);
 }

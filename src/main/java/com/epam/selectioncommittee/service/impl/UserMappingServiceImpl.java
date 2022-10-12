@@ -15,16 +15,21 @@ import java.util.Objects;
 public class UserMappingServiceImpl implements UserMappingService {
     @Override
     public User populateUserWithPresentUserDtoFields(User user, UserDto userDto) {
+        Long id = userDto.getId();
+        if(Objects.nonNull(id)) {
+            user.setId(id);
+        }
         String email = userDto.getEmail();
         if (Objects.nonNull(email)) {
             user.setEmail(email);
         }
-        String password = user.getPassword();
+        String password = userDto.getPassword();
         if (Objects.nonNull(password)) {
             user.setPassword(password);
         }
         user.setRole(userDto.getRole());
         user.setIsBlocked(userDto.getIsBlocked());
+
         UserInfoDto userInfoDto = userDto.getUserInfo();
         if (Objects.nonNull(userInfoDto)) {
             mapUserInfo(user, userInfoDto);

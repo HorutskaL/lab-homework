@@ -81,10 +81,4 @@ public class FacultyServiceImpl implements FacultyService {
         Pageable sorted = PageRequest.of(page, size, Sort.by("amountTotalPlaces"));
         return facultyRepository.findAll(sorted);
     }
-
-    @Override
-    public List<Faculty> listPageAndSortingFacultyByFacultyId(int page, int size) {
-        Pageable sorted = PageRequest.of(page, size, Sort.by("facultyId"));
-        return facultyRepository.findAll(sorted).stream().collect(Collectors.toList());
-    }
 }

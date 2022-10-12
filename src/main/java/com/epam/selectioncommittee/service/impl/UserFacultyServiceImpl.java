@@ -45,4 +45,5 @@ public class UserFacultyServiceImpl implements UserFacultyService {
         user.setFaculties(faculties);
         userRepository.save(user);
     }
+
 }

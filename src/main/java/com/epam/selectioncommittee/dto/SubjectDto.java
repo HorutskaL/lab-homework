@@ -1,7 +1,6 @@
 package com.epam.selectioncommittee.dto;
 
 import com.epam.selectioncommittee.dto.group.OnCreate;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Data;
 
@@ -12,7 +11,7 @@ import javax.validation.constraints.NotBlank;
 @Data
 @Builder
 public class SubjectDto {
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+
     private Long id;
     @Min(1)
     @Max(12)

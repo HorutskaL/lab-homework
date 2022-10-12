@@ -17,3 +17,8 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: create
+logging:
+  level:
+    org.springframework.orm.jpa: DEBUG
+    org.springframework.orm.transaction: DEBUG
+

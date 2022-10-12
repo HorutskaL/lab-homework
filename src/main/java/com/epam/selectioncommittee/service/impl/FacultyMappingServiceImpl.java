@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 public class FacultyMappingServiceImpl implements FacultyMappingService {
     @Override
     public Faculty populateFacultyWithPresentFacultyDtoFields(Faculty faculty, FacultyDto facultyDto) {
-        faculty.setAmountBudgetPlaces(facultyDto.getAmountBudgetPlace());
-        faculty.setAmountTotalPlaces(facultyDto.getAmountTotalPlace());
+        faculty.setAmountBudgetPlaces(facultyDto.getAmountBudgetPlaces());
+        faculty.setAmountTotalPlaces(facultyDto.getAmountTotalPlaces());
         faculty.setIsEieHistory(faculty.getIsEieHistory());
         faculty.setIsEieMath(faculty.getIsEieMath());
         faculty.setIsEieUkLanguage(facultyDto.getIsEieUkLanguage());

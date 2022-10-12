@@ -21,5 +21,4 @@ public interface FacultyService {
 
     Page<Faculty> listPageAndSortingFacultyByTotalPl(int page, int size);
 
-    List<Faculty> listPageAndSortingFacultyByFacultyId(int page, int size);
 }

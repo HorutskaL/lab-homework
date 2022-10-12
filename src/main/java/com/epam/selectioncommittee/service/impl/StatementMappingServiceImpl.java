@@ -3,7 +3,6 @@ package com.epam.selectioncommittee.service.impl;
 import com.epam.selectioncommittee.model.*;
 import com.epam.selectioncommittee.repository.FacultyRepository;
 import com.epam.selectioncommittee.repository.StatementRepository;
-import com.epam.selectioncommittee.repository.UserRepository;
 import com.epam.selectioncommittee.service.StatementMappingService;
 import com.epam.selectioncommittee.service.exception.FacultyNotFoundException;
 import lombok.AllArgsConstructor;

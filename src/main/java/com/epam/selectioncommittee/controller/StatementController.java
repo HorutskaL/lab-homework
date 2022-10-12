@@ -1,16 +1,14 @@
 package com.epam.selectioncommittee.controller;
 
 import com.epam.selectioncommittee.api.StatementApi;
+import com.epam.selectioncommittee.dto.UserDto;
 import com.epam.selectioncommittee.service.StatementMappingService;
 import com.epam.selectioncommittee.service.StatementService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @AllArgsConstructor
@@ -30,7 +28,23 @@ public class StatementController implements StatementApi {
     }
 
     @Override
-    public void deleteUserFromStatement(@PathVariable Long userId) {
+    public void deleteUserFromStatement(Long userId) {
         statementService.removeApplicantFromStatement(userId);
     }
+
+    @Override
+    public List<UserDto> getApplicantList(Long facultyId) {
+        return statementService.getApplicantList(facultyId);
+    }
+
+    @Override
+    public List<UserDto> getBudgetPlApplicantList(Long facultyId) {
+        return statementService.getBudgetPlApplicantList(facultyId);
+    }
+
+    @Override
+    public List<UserDto> getNonBudgetPlApplicantList(Long facultyId) {
+        return statementService.getNonBudgetPlApplicantList(facultyId);
+    }
+
 }
